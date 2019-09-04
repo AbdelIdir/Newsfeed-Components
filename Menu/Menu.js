@@ -13,6 +13,7 @@ let menuItems = [
 
   Step 1: Write a function that will create a menu component as seen below:
 
+
   <div class="menu">
     <ul>
       {each menu item as a list item}
@@ -32,4 +33,51 @@ let menuItems = [
 
   Step 6: add the menu component to the DOM.
   
+
+in your map function, you should set the text content of the list you create to element. then append the list to ul
+
+
+
+*/
+function menuMaker (arr) {
+  debugger
+  let divB = document.createElement("div");     
+  let ul = document.createElement("ul");
+  
+  divB.classList.add("menu");             
+
+
+ let list = arr.map(element => {
+   let li = document.createElement("li") ;
+   li.textContent = element;
+    ul.appendChild(li) }) ;
+
+    let menuButton = document.querySelector(".menu-button") ;
+
+    menuButton.addEventListener("click", () => {
+
+      divB.classList.toggle("menu--open");
+
+      
+    })
+return divB 
+
+}
+
+
+menuButton.appendChild(divB);
+
+
+
+
+
+/*
+
+const artblock = document.querySelector(".articles");
+
+articles.forEach(element => {
+  artblock.appendChild(element);
+});
+
+
 */
