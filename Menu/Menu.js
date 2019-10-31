@@ -1,18 +1,17 @@
 /* This is the data we will be using, study it but don't change anything, yet. */
 
 let menuItems = [
-  'Students',
-  'Faculty',
+  "Students",
+  "Faculty",
   "What's New",
-  'Tech Trends',
-  'Music',
-  'Log Out'
+  "Tech Trends",
+  "Music",
+  "Log Out"
 ];
 
 /* 
 
   Step 1: Write a function that will create a menu component as seen below:
-
 
   <div class="menu">
     <ul>
@@ -33,51 +32,38 @@ let menuItems = [
 
   Step 6: add the menu component to the DOM.
   
-
-in your map function, you should set the text content of the list you create to element. then append the list to ul
-
-
-
 */
-function menuMaker (arr) {
-  debugger
-  let divB = document.createElement("div");     
-  let ul = document.createElement("ul");
-  
-  divB.classList.add("menu");             
 
+function menuMaker() {
+  ///// creating my elements :
+  const menuDiv = document.createElement("div");
+  const ul = document.createElement("ul");
+  menuDiv.classList.add("menu", "menu--open");
 
- let list = arr.map(element => {
-   let li = document.createElement("li") ;
-   li.textContent = element;
-    ul.appendChild(li) }) ;
+  ///////// appending to the parent element :
+  menuDiv.append(ul);
 
-    let menuButton = document.querySelector(".menu-button") ;
+  /////// adding the content of the array to the list in the menu
 
-    menuButton.addEventListener("click", () => {
+  menuItems.forEach(list => {
+    const liInUL = document.createElement("li");
+    ul.append(liInUL);
+    liInUL.textContent = list;
+  });
 
-      divB.classList.toggle("menu--open");
+  ////// adding a toggle feature on the menu button
 
-      
-    })
-return divB 
+  const menuButton = document.querySelector(".menu-button");
 
+  menuButton.addEventListener("click", event => {
+    menuDiv.classList.toggle("menu--open");
+  });
+
+  ////// returning the menu Div
+
+  return menuDiv;
 }
 
+const headerClassDiv = document.querySelector(".header");
 
-menuButton.appendChild(divB);
-
-
-
-
-
-/*
-
-const artblock = document.querySelector(".articles");
-
-articles.forEach(element => {
-  artblock.appendChild(element);
-});
-
-
-*/
+headerClassDiv.append(menuMaker());
