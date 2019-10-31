@@ -39,15 +39,70 @@ in your map function, you should set the text content of the list you create to 
 
 
 */
+
+
+
 function menuMaker (arr) {
-  debugger
-  let divB = document.createElement("div");     
-  let ul = document.createElement("ul");
-  
-  divB.classList.add("menu");             
+debugger
+
+  const divB = document.createElement("div");     
+  const ul = document.createElement("ul");
+  divB.classList.add("menu");
+
+  /*
+  const li1 = document.createElement("li");
+  const li2 = document.createElement("li");
+  const li3 = document.createElement("li");
+  const li4 = document.createElement("li");
+  const li5 = document.createElement("li");
+  const li6 = document.createElement("li");
+*/
+  liArray = [];
+  function liCreator(totalNumOfList) {
+    for(let i=0; i<totalNumOfList; i++) {
+      liArray.push(ul.appendChild(document.createElement("li")))
+    }  
+  }
+liCreator(6);
+//console.log(liArray)
+
+const menuList = menuItems.map(function (textInItems, index) {
+   return liArray[index].textContent = textInItems
+  //console.log(element, index)
+
+});
 
 
- let list = arr.map(element => {
+
+let menuButton = document.querySelector(".menu-button") ;
+
+    menuButton.addEventListener("click", () => {
+     divB.classList.toggle("menu--open");
+    })
+
+//console.log(menuList);
+/*
+  li1.textContent = menuItems[0];
+  li2.textContent = menuItems[1];
+  li3.textContent = menuItems[2];
+  li4.textContent = menuItems[3];
+  li5.textContent = menuItems[4];
+  li6.textContent = menuItems[5];
+*/
+
+/*
+  ul.appendChild(li1);
+  ul.appendChild(li2);
+  ul.appendChild(li3);
+  ul.appendChild(li4);
+  ul.appendChild(li5);
+  ul.appendChild(li6);
+*/
+  divB.appendChild(ul)
+  // divB.classList.add("menu");             
+
+/*
+  let = arr.map(element => {
    let li = document.createElement("li") ;
    li.textContent = element;
     ul.appendChild(li) }) ;
@@ -55,20 +110,24 @@ function menuMaker (arr) {
     let menuButton = document.querySelector(".menu-button") ;
 
     menuButton.addEventListener("click", () => {
-
-      divB.classList.toggle("menu--open");
-
-      
+     divB.classList.toggle("menu--open");
     })
-return divB 
 
+    menuButton.appendChild(divB);
+
+return divB 
+*/
+
+return divB
 }
 
+// const menu = menuItems.map(menuMaker);
 
-menuButton.appendChild(divB);
+const header = document.querySelector(".header");
 
+header.appendChild(menuMaker());
 
-
+console.log(menuMaker(menuItems))
 
 
 /*
@@ -81,3 +140,6 @@ articles.forEach(element => {
 
 
 */
+
+
+ 
