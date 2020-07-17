@@ -13,6 +13,7 @@ let menuItems = [
 
   Step 1: Write a function that will create a menu component as seen below:
 
+
   <div class="menu">
     <ul>
       {each menu item as a list item}
@@ -32,4 +33,113 @@ let menuItems = [
 
   Step 6: add the menu component to the DOM.
   
+
+in your map function, you should set the text content of the list you create to element. then append the list to ul
+
+
+
 */
+
+
+
+function menuMaker (arr) {
+debugger
+
+  const divB = document.createElement("div");     
+  const ul = document.createElement("ul");
+  divB.classList.add("menu");
+
+  /*
+  const li1 = document.createElement("li");
+  const li2 = document.createElement("li");
+  const li3 = document.createElement("li");
+  const li4 = document.createElement("li");
+  const li5 = document.createElement("li");
+  const li6 = document.createElement("li");
+*/
+  liArray = [];
+  function liCreator(totalNumOfList) {
+    for(let i=0; i<totalNumOfList; i++) {
+      liArray.push(ul.appendChild(document.createElement("li")))
+    }  
+  }
+liCreator(6);
+//console.log(liArray)
+
+const menuList = menuItems.map(function (textInItems, index) {
+   return liArray[index].textContent = textInItems
+  //console.log(element, index)
+
+});
+
+
+
+let menuButton = document.querySelector(".menu-button") ;
+
+    menuButton.addEventListener("click", () => {
+     divB.classList.toggle("menu--open");
+    })
+
+//console.log(menuList);
+/*
+  li1.textContent = menuItems[0];
+  li2.textContent = menuItems[1];
+  li3.textContent = menuItems[2];
+  li4.textContent = menuItems[3];
+  li5.textContent = menuItems[4];
+  li6.textContent = menuItems[5];
+*/
+
+/*
+  ul.appendChild(li1);
+  ul.appendChild(li2);
+  ul.appendChild(li3);
+  ul.appendChild(li4);
+  ul.appendChild(li5);
+  ul.appendChild(li6);
+*/
+  divB.appendChild(ul)
+  // divB.classList.add("menu");             
+
+/*
+  let = arr.map(element => {
+   let li = document.createElement("li") ;
+   li.textContent = element;
+    ul.appendChild(li) }) ;
+
+    let menuButton = document.querySelector(".menu-button") ;
+
+    menuButton.addEventListener("click", () => {
+     divB.classList.toggle("menu--open");
+    })
+
+    menuButton.appendChild(divB);
+
+return divB 
+*/
+
+return divB
+}
+
+// const menu = menuItems.map(menuMaker);
+
+const header = document.querySelector(".header");
+
+header.appendChild(menuMaker());
+
+console.log(menuMaker(menuItems))
+
+
+/*
+
+const artblock = document.querySelector(".articles");
+
+articles.forEach(element => {
+  artblock.appendChild(element);
+});
+
+
+*/
+
+
+ 

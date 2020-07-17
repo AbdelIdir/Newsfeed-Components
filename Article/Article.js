@@ -85,7 +85,18 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: "Brand New article" ,
+    firstParagraph: `ooooooooo?rem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et d rem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et d rem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et d `,
+
+    secondParagraph: `rem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut,rem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et d labore et d`,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
+
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -99,6 +110,7 @@ const data = [
     <span class='expandButton'></span>
   </div>
 
+
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
@@ -107,8 +119,70 @@ const data = [
 
   Step 3: return the entire component.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  Step 4: Map over the data, creating a component for each object and add each component to the DOM as children of the 'articles' div.
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function articleMaker (settings) {
+
+  let diva = document.createElement("div");
+
+  let h2 = document.createElement("h2");
+  let pdate = document.createElement("p");
+  let pa = document.createElement("p");
+  let pb = document.createElement("p");
+  let pc = document.createElement("p");
+  let span = document.createElement("span");
+
+
+  h2.textContent = settings.title;
+  pdate.textContent = settings.date
+  pa.textContent = settings.firstParagraph;
+  pb.textContent = settings.secondParagraph;
+  pc.textContent = settings.thirdParagraph;
+
+  span.classList.add("expandButton");
+  diva.classList.add("article");
+  diva.classList.add("article-open");
+  span.textContent = "Hide this";
+  span.style.background = "purple"
+  span.style.color = "white";
+  span.style.padding = "2px";
+  span.style.borderRadius = "15px"
+  span.addEventListener("click", e => {
+
+    diva.classList.toggle("article-open");
+
+  })
+
+  diva.appendChild(h2);
+  diva.appendChild(pdate);
+  diva.appendChild(pa);
+  diva.appendChild(pb);
+  diva.appendChild(pc);
+  diva.appendChild(span);
+
+
+  return diva;
+};
+
+
+
+//Step 4: Map over the data, creating a component for each object and add each component to the DOM as children of the 'articles' div.
+
+  //Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+  
+  
+  
+const articles= data.map(articleMaker);
+
+
+const artblock = document.querySelector(".articles");
+
+articles.forEach(element => {
+  artblock.appendChild(element);
+});
+
+
